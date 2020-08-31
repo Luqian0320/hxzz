@@ -10,16 +10,16 @@
               alt="无法显示图片"
             />-->
 						<div class="SGMW">
-							SGMW河西基地总装车间
+							SGMW河西基地总装车间							
 						</div>
-
+						<!--时间显示开始
+						<div class="show-time"></div>						
+						<!-- 时间显示结束 -->
 					</div>
 				</el-col>
 				<el-col :span="3" class="centersection">
 					<div class="grid-content bg-purple-light">
-						<!--  <el-button class="el-dropdown-link userinfo-inner">欢迎您</el-button>-->
 						<el-button class="userinfo-inner" @click="signout">退出</el-button>
-
 					</div>
 				</el-col>
 				<el-col :span="4" class="rightsection">
@@ -41,8 +41,9 @@
 							<!--文字 -->
 							<span>{{item1.name}}</span>
 						</template>
-						<el-menu-item class="menuItem" @click="clickMenuItem" v-for="(item2,index) in item1.children" :key="item2.path" :index="item2.path">
-							<i class="el-icon-location"></i>
+						<el-menu-item class="menuItem" @click="clickMenuItem" v-for="(item2,index) in item1.children" :key="item2.path"
+						 :index="item2.path">
+							<i class="el-icon-menu"></i>
 							<!--图标 -->
 							<span>{{item2.name}}</span>
 						</el-menu-item>
@@ -162,48 +163,84 @@
 		},
 	};
 </script>
+<!-- <script>
+							var t = null;
+							t = setTimeout(time, 1000); //开始运行
+							function time() {
+								clearTimeout(t); //清除定时器
+								dt = new Date();
+								var y = dt.getFullYear();
+								var mt = dt.getMonth() + 1;
+								var day = dt.getDate();
+								var h = dt.getHours(); //获取时
+								var m = dt.getMinutes(); //获取分
+								var s = dt.getSeconds(); //获取秒
+								document.querySelector(".show-time").innerHTML =
+									"当前时间：" +
+									y +
+									"年" +
+									mt +
+									"月" +
+									day +
+									"日-" +
+									h +
+									"时" +
+									m +
+									"分" +
+									s +
+									"秒";
+								t = setTimeout(time, 1000); //设定定时器，循环运行
+							}
+						</script> -->
 <style scoped>
 	.container {
 		height: 100vh;
 		font-size: 15px;
 	}
-	
+
 	.header {
 		background: #212121;
 		color: #fff;
 	}
-	
+.show-time {
+	  position: absolute;
+	  top: 0;
+	  right: 1rem;
+	  line-height: 0.9375rem;
+	  color: rgba(255, 255, 255, 0.7);
+	  font-size: 0.25rem;
+	}
 	.aside {
 		background: #3a3a3a;
 		color: #fff;
 		/* height: 100%; */
 	}
-	
+
 	.menu {
 		background: none;
 		color: #fff;
 	}
-	
+
 	.main {
 		/* height: 100%; */
 		color: #212121;
 	}
-	
+
 	.headerlogo {
 		line-height: 60px;
 		margin-top: 10px;
 	}
-	
+
 	.rightsection {
 		line-height: 60px;
 		text-align: right;
 	}
-	
+
 	.centersection {
 		line-height: 60px;
 		text-align: right;
 	}
-	
+
 	.SGMW {
 		font-size: 30px;
 		text-align: left;
