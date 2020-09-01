@@ -6,7 +6,7 @@
       label-width="80px"
       :model="formdata"
     >
-      <h2>用户登录</h2>
+      <h2>管理员登录</h2>
       <!--<el-form-item label="工号">
         <el-input v-model="formdata.userid"></el-input>
       </el-form-item>-->
@@ -92,6 +92,10 @@ export default {
   background: #fff;
   border-radius: 5px;
   padding: 30px;
+}
+	
+.login-form .h2{
+	text-align: center;
 }
 .login-btn {
   width: 100%;

@@ -1,93 +1,86 @@
 <template>
-	<div>
-		<el-row :gutter="20">
-			<el-col :span="12">
-				<div class="grid-content bg-purple">
-					<!-- <span class="item">生产管理信息</span> -->
-				</div>
-			</el-col>
-			<el-col :span="8">
-				<div class="grid-content bg-purple">
-					<el-button type="info">{{getdate()}}</el-button>
-				</div>
-			</el-col>
-		</el-row>
-		<!--日期选择按钮-->
-		<el-row :gutter="24">
-			<el-col :span="10">
-				<div class="grid-content bg-purple"></div>
-			</el-col>
-			<el-col :span="10">
-				<div class="grid-content bg-purple" style="text-align: center;">
-					<div class="block">
-						<!--<span class="demonstration">带快捷选项</span>-->
-						<el-date-picker v-model="value1" align="right" type="daterange" 
-						range-separator="至" start-placeholder="开始日期"
-						end-placeholder="结束日期" >
-						</el-date-picker>
-					</div>
-				</div>				
-			</el-col>
-			
-			<el-col :span="4"><div class="grid-content bg-purple" style="text-align: center;"><el-button plain @click="dialogTableVisible=true">查看明细</el-button></div></el-col>
-		</el-row>
+	<!-- 公共盒子 -->
+	<div class="panel">
+		<el-table :data="tableData" stripe="" style="width: 100%">
+			<el-table-column prop="date" label="" width="150">
+			</el-table-column>
+			<el-table-column prop="mbtl" label="目标台量">
+			</el-table-column>
+			<el-table-column prop="sjtl" label="实际台量">
+			</el-table-column>
+			<el-table-column prop="mbxl" label="目标效率">
+			</el-table-column>
+			<el-table-column prop="gzsc" label="工作时长">
+			</el-table-column>
+			<el-table-column prop="lltl" label="理论台量">
+			</el-table-column>
+		</el-table>
+<!-- 时间选择并查询相关数据start -->
+		<div class="form-group">
+			<label class="date-label">选择日期：</label>
+			<div class="date-container">
+				<i class="fa fa-calendar date-icon"></i>
+				<input type="text" id="startData" class="form-control date-input">
+			</div>
 
+		</div>
+		<div class="form-group">
+			<label class="date-label">--</label>
+			<div class="date-container">
+				<i class="fa fa-calendar date-icon"></i>
+				<input type="text" id="endData" class="form-control date-input">
+			</div>
+		</div>
+		<div class="form-group">
+			<a href="javascript:;" id="searchware" class="btn btn-default btn-sm"><i class="fa fa-search"></i>查 询</a>
+		</div>
+<!-- 时间选择并查询相关数据end -->
 	</div>
+
 </template>
 <script>
 	export default {
 		data() {
 			return {
-						
-				//日期显示
-				getdate() {
-					var date = new Date();
-					var seperatorl = "-";
-					var year = date.getFullYear();
-					var month = date.getMonth() + 1;
-					var strDate = date.getDate();
-					if (month >= 1 && month <= 9) {
-						month = "0" + month;
-					}
-					if (strDate >= 0 && strDate <= 9) {
-						strDate = "0" + strDate;
-					}
-					var currentdate = year + "年" + month + "月" + strDate + "日";
-					return currentdate;
-				},
-				//表格样式布局
-				iRowStyle: function({
-					row,
-					rowIndex
-				}) {
-					return 'height:100px';
-				},
-				iCellStyle: function({
-					row,
-					column,
-					rowIndex,
-					columnIndex
-				}) {
-					return "text-align:center;padding:25px;"
-				},
-				iHeaderCellStyle: function({
-					row,
-					column,
-					rowIndex,
-					columnIndex
-				}) {
-					return "text-align:center;";
-				},
-				iHeaderRowStyle: function({
-					row,
-					rowIndex
-				}) {
-					return 'height:80px';
-				},
-					//日期选择数据
-				value1: '',
-				value2: '',
+				tableData: [{
+					date: '东C',
+					mbtl: '10',
+					sjtl: '8',
+					mbxl: '20%',
+					gzsc: '30h',
+					lltl: '3'
+				}, {
+					date: '东D',
+					mbtl: '10',
+					sjtl: '8',
+					mbxl: '20%',
+					gzsc: '30h',
+					lltl: '3'
 
+				}, {
+					date: '西B',
+					mbtl: '10',
+					sjtl: '8',
+					mbxl: '20%',
+					gzsc: '30h',
+					lltl: '3'
+
+				}, {
+					date: '西C',
+					mbtl: '10',
+					sjtl: '8',
+					mbxl: '20%',
+					gzsc: '30h',
+					lltl: '3'
+
+				}, {
+					date: '合计',
+					mbtl: '10',
+					sjtl: '8',
+					mbxl: '20%',
+					gzsc: '30h',
+					lltl: '3'
+				}]
 			};
 		}
 		//  name: 'ProduceInfo'  
@@ -95,7 +88,7 @@
 </script>
 
 <style scoped>
-	@import url("../../assets/scss/produce.scss");
+	@import url("../../assets/css/produce.css");
 
 	.el-row {
 		margin-bottom: 20px;

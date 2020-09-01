@@ -10,10 +10,13 @@
               alt="无法显示图片"
             />-->
 						<div class="SGMW">
-							SGMW河西基地总装车间							
+							SGMW河西基地总装车间后台管理系统							
 						</div>
-						<!--时间显示开始
-						<div class="show-time"></div>						
+						<!-- 时间显示开始 -->
+						<div class="show-time">
+							{{getdate()}}
+						</div>
+										
 						<!-- 时间显示结束 -->
 					</div>
 				</el-col>
@@ -72,70 +75,64 @@
 					display: "block",
 				},
 				menuData: [{
-						name: "安全运行",
+						name: "权限管理",
 						order: "1",
-						path: 'safeinfomanage',
+						path: 'powerinfomanage',
 						children: [{
-							path: "safeinfomanage",
-							name: "安全运行信息",
-						}, ],
+							path: "roleinfomanage",
+							name: "角色列表",
+						}, {
+							path: "powerlist_infomanage",
+							name: "权限列表",
+						},],
 					},
 					{
-						path: "produceinfomanage",
-						name: "生产管理",
+						path: "pageinfomanage",
+						name: "页面管理",
 						order: "2",
 						children: [{
 							path: "produceinfomanage",
 							name: "生产信息",
-						}, ],
-					},
-					{
-						path: "orderinfomange",
-						name: "流转车数据",
-						order: "3",
-						children: [{
+						},{
+							path: "safeinfomanage",
+							name: "安全运行信息",
+						},{
 							path: "orderinfomange",
 							name: "流转车信息",
-						}, ],
-					},
-					{
-						path: "qualityinfomanage",
-						name: "质量",
-						order: "4",
-						children: [{
+						},{
 							path: "qualityinfomanage",
 							name: "质量信息",
-						}, ],
-					},
-
-					{
-						path: "meninfomanage",
-						name: "人员管理",
-						order: "5",
-						children: [{
+						},{
 							path: "meninfomanage",
 							name: "人员信息",
 
+						},{
+							path: "energyinfomanage",
+							name: "能耗信息",
+						},{
+							path: "equipmentinfomanage",
+							name: "设备信息",
+						},],
+					},
+					{
+						path: "userinfomange",
+						name: "用户管理",
+						order: "3",
+						children: [{
+							path: "userlist_infomanage",
+							name: "用户列表",
 						}, ],
 					},
 					{
-						path: "energyinfomanage",
-						name: "能耗管理",
-						order: "6",
+						path: "datainfomanage",
+						name: "数据统计",
+						order: "4",
 						children: [{
-							path: "energyinfomanage",
-							name: "能耗信息",
-						}]
+							path: "datalist_infomanage",
+							name: "数据报表",
+						}, ],
 					},
-					{
-						path: "equipmentinfomanage",
-						name: "设备状态",
-						order: "7",
-						children: [{
-							path: "equipmentinfomanage",
-							name: "设备信息",
-						}]
-					},
+					
 				],
 			};
 		},
@@ -160,38 +157,25 @@
 			clickTitle() {
 				this.style.display = "block";
 			},
+			getdate(){
+				var date =new Date();
+				var seperatorl = "-";
+									var year = date.getFullYear();
+									var month = date.getMonth() + 1;
+									var strDate = date.getDate();
+									if (month >= 1 && month <= 9) {
+										month = "0" + month;
+									}
+									if (strDate >= 0 && strDate <= 9) {
+										strDate = "0" + strDate;
+									}
+									var currentdate = year + "年" + month + "月" + strDate + "日";
+									return currentdate;
+			},
 		},
 	};
 </script>
-<!-- <script>
-							var t = null;
-							t = setTimeout(time, 1000); //开始运行
-							function time() {
-								clearTimeout(t); //清除定时器
-								dt = new Date();
-								var y = dt.getFullYear();
-								var mt = dt.getMonth() + 1;
-								var day = dt.getDate();
-								var h = dt.getHours(); //获取时
-								var m = dt.getMinutes(); //获取分
-								var s = dt.getSeconds(); //获取秒
-								document.querySelector(".show-time").innerHTML =
-									"当前时间：" +
-									y +
-									"年" +
-									mt +
-									"月" +
-									day +
-									"日-" +
-									h +
-									"时" +
-									m +
-									"分" +
-									s +
-									"秒";
-								t = setTimeout(time, 1000); //设定定时器，循环运行
-							}
-						</script> -->
+ 
 <style scoped>
 	.container {
 		height: 100vh;
@@ -203,12 +187,14 @@
 		color: #fff;
 	}
 .show-time {
-	  position: absolute;
-	  top: 0;
-	  right: 1rem;
-	  line-height: 0.9375rem;
-	  color: rgba(255, 255, 255, 0.7);
-	  font-size: 0.25rem;
+	   
+	      position: absolute;
+	      top: 1.4rem;
+	      right: 25rem;
+	      line-height: 0.9375rem;
+	      color: rgba(255, 255, 255, 1);
+	      font-size: 1.25rem;
+	  
 	}
 	.aside {
 		background: #3a3a3a;

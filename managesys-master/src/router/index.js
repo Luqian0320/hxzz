@@ -19,7 +19,16 @@ const EnergyInfoManage = () =>
 	import('../../src/views/energyinfo/EnergyInfoManage.vue')
 const EquipmentInfoManage = () =>
 	import('../../src/views/equipmentinfo/EquipmentInfoManage.vue')
+const RoleInfoManage = () =>
+	import('../../src/views/roleinfo/RoleInfoManage.vue')
+const Powerlist_InfoManage = () =>
+	import('../../src/views/powerlist_info/Powerlist_InfoManage.vue')
+const Userlist_InfoManage = () =>
+	import('../../src/views/userlist_info/Userlist_InfoManage.vue')
+const Datalist_InfoManage = () =>
+	import('../../src/views/datalist_info/Datalist_InfoManage.vue')
 Vue.use(VueRouter)
+
 
 const routes = [{
 		path: '/',
@@ -65,6 +74,24 @@ const routes = [{
 				name: '设备信息',
 				component: EquipmentInfoManage,
 			},
+			{
+				path: '/roleinfomanage',
+				name: '角色列表',
+				component: RoleInfoManage,
+			},{
+				path: '/powerlist_infomanage',
+				name: '权限列表',
+				component: Powerlist_InfoManage,
+			},{
+				path: '/userlist_infomanage',
+				name: '用户列表',
+				component: Userlist_InfoManage,
+			},{
+				path: '/datalist_infomanage',
+				name: '数据列表',
+				component: Datalist_InfoManage,
+			}
+			
 		]
 	},
 ]
