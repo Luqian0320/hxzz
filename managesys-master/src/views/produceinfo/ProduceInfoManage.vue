@@ -15,76 +15,48 @@
 			<el-table-column prop="lltl" label="理论台量">
 			</el-table-column>
 		</el-table>
-<!-- 时间选择并查询相关数据start -->
-		<div class="form-group">
-			<label class="date-label">选择日期：</label>
-			<div class="date-container">
-				<i class="fa fa-calendar date-icon"></i>
-				<input type="text" id="startData" class="form-control date-input">
-			</div>
-
+		<!-- 时间选择并查询相关数据start -->
+		<div>查询<el-input placeholder="keyword" v-model="keyword" suffix="el-icon-search" @change="gettableData"></el-input>
 		</div>
-		<div class="form-group">
-			<label class="date-label">--</label>
-			<div class="date-container">
-				<i class="fa fa-calendar date-icon"></i>
-				<input type="text" id="endData" class="form-control date-input">
-			</div>
-		</div>
-		<div class="form-group">
-			<a href="javascript:;" id="searchware" class="btn btn-default btn-sm"><i class="fa fa-search"></i>查 询</a>
-		</div>
-<!-- 时间选择并查询相关数据end -->
+		<!-- 时间选择并查询相关数据end -->
 	</div>
 
 </template>
 <script>
+	import axios from 'axios'
 	export default {
-		data() {
-			return {
-				tableData: [{
-					date: '东C',
-					mbtl: '10',
-					sjtl: '8',
-					mbxl: '20%',
-					gzsc: '30h',
-					lltl: '3'
-				}, {
-					date: '东D',
-					mbtl: '10',
-					sjtl: '8',
-					mbxl: '20%',
-					gzsc: '30h',
-					lltl: '3'
-
-				}, {
-					date: '西B',
-					mbtl: '10',
-					sjtl: '8',
-					mbxl: '20%',
-					gzsc: '30h',
-					lltl: '3'
-
-				}, {
-					date: '西C',
-					mbtl: '10',
-					sjtl: '8',
-					mbxl: '20%',
-					gzsc: '30h',
-					lltl: '3'
-
-				}, {
-					date: '合计',
-					mbtl: '10',
-					sjtl: '8',
-					mbxl: '20%',
-					gzsc: '30h',
-					lltl: '3'
-				}]
-			};
-		}
-		//  name: 'ProduceInfo'  
-	};
+		date:'show-examples',
+			data() {
+				return {
+					tableData: [],
+					keyword: '',
+				}
+			},
+			created() {
+				axios.get('http://192.168.8.106:8081/user/test').then((res) => {
+					console.log(res.data)
+					this.tableData = res.data.data.message;
+					
+				})
+			},
+			methods: {
+				gettableData() {
+					axios.get('http://192.168.8.106:8081/user/test').then((res) => {
+						this.tableData = [];
+						for (var i = 0; i < res.data.data.total; i++) {
+							if (this.keyword == res.data.data.message[i].date || this.keyword == res.data.data.message[i].mbtl || this.keyword ==
+								res.data.data.message[i].mbxl) {
+								this.tableData.push(res.data.data.message[i]);
+							}
+							if (this.keyword == '') {
+								this.tableData = res.data.data.message;
+							}
+						}
+					})
+				}
+			}
+			//  name: 'ProduceInfo'  
+		};
 </script>
 
 <style scoped>

@@ -35,46 +35,46 @@ export default {
   methods:{
      handleLodin(){
          //测试版本
-         if(this.formdata.username !== '' && this.formdata.password !== ''){
-             this.$router.push({path:'/home'})
-                //  2.提示成功
-                this.$message({
-                showClose: true,
-                message: '登录成功',
-                type: 'success'
-                });
-         }else {
-             this.$message({
-                showClose: true,
-                message: '用户名和密码不能为空',
-                type: 'error'
-                });
-         }
-         //正式版本需要发送请求
-         // // url是要发送请求的地址
-         // this.$http.post('http://192.168.8.106:8081/user/login',this.formdata).then(res => {
-         //     //请求返回来的数据
-         //     console.log(res.data)
-         //    //  保存token：
-         //    //localStorage.setItem('token',res.data.token)
-         //    //  登录成功
-         //    if(res.data == "200"){
-         //        //  1.跳转home页面
-         //        this.$router.push({path:'/home'})
+         // if(this.formdata.username !== '' && this.formdata.password !== ''){
+         //     this.$router.push({path:'/home'})
          //        //  2.提示成功
          //        this.$message({
          //        showClose: true,
          //        message: '登录成功',
          //        type: 'success'
          //        });
-         //    }else { //  登录失败
-         //        this.$message({
+         // }else {
+         //     this.$message({
          //        showClose: true,
-         //        message: '用户名或密码错误',
+         //        message: '用户名和密码不能为空',
          //        type: 'error'
          //        });
-         //    }
-         // })
+         // }
+         //正式版本需要发送请求
+         // // url是要发送请求的地址
+         this.$http.post('http://192.168.8.106:8081/user/login',this.formdata).then(res => {
+             //请求返回来的数据
+             console.log(res.data)
+            //  保存token：
+            //localStorage.setItem('token',res.data.token)
+            //  登录成功
+            if(res.data == "200"){
+                //  1.跳转home页面
+                this.$router.push({path:'/home'})
+                //  2.提示成功
+                this.$message({
+                showClose: true,
+                message: '登录成功',
+                type: 'success'
+                });
+            }else { //  登录失败
+                this.$message({
+                showClose: true,
+                message: '用户名或密码错误',
+                type: 'error'
+                });
+            }
+         })
 		 //正式版本结束
      } 
   }
